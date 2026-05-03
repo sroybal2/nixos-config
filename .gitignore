@@ -1,0 +1,7 @@
+*
+!.gitignore
+!configuration.nix
+!hardware-configuration.nix
+!flake.nix
+!flake.lock
+!home.nix
