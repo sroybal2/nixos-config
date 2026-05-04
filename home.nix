@@ -370,7 +370,7 @@ in {
     enable = true;
     initExtra = ''
       nr() {
-        sudo nixos-rebuild switch && \
+        sudo nixos-rebuild switch --flake /home/steve#default && \
         git -C /home/steve add -A && \
         git -C /home/steve commit -m "auto: nixos rebuild $(date '+%Y-%m-%d %H:%M')" && \
         git -C /home/steve push
