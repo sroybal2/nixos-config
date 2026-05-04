@@ -365,6 +365,19 @@ in {
     };
   };
 
+  # ── Shell ──────────────────────────────────────────────────────────────────
+  programs.bash = {
+    enable = true;
+    shellAliases = {
+      nr = ''
+        sudo nixos-rebuild switch && \
+        git -C /home/steve add -A && \
+        git -C /home/steve commit -m "auto: nixos rebuild $(date '+%Y-%m-%d %H:%M')" && \
+        git -C /home/steve push
+      '';
+    };
+  };
+
   # ── User packages ─────────────────────────────────────────────────────────
   home.packages = with pkgs; [
     obsidian
