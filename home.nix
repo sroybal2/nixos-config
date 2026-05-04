@@ -368,7 +368,22 @@ in {
   # ── User packages ─────────────────────────────────────────────────────────
   home.packages = with pkgs; [
     obsidian
+    mc
+    nixd
   ];
+
+  programs.helix = {
+    enable = true;
+    languages = {
+      language-server.nixd = {
+        command = "nixd";
+      };
+      language = [{
+        name = "nix";
+        language-servers = [ "nixd" ];
+      }];
+    };
+  };
 
   # ── oxwm configuration (X11 only — no conflict with niri) ────────────────
   xdg.configFile."oxwm/config.lua".text = ''
