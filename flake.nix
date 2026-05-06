@@ -41,9 +41,7 @@
                 ({ ... }: {
                   wayland.windowManager.mango = {
                     enable = true;
-                    settings = ''
-                      # see ~/.config/mango/config.conf
-                    '';
+                    settings = builtins.readFile ./mango-config.conf;
                     autostart_sh = ''
                       # see ~/.config/mango/autostart.sh
                       # Note: no shebang needed
