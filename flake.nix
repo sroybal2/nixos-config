@@ -13,20 +13,45 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    mango = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }: {
+  outputs = { self, nixpkgs, home-manager, stylix, mango, ... }: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
         stylix.nixosModules.stylix
+        mango.nixosModules.mango
+        { programs.mango.enable = true; }
         home-manager.nixosModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.steve = import ./home.nix;
+            backupFileExtension = "backup";
+            users.steve = {
+              imports = [
+                ./home.nix
+                mango.hmModules.mango
+                ({ ... }: {
+                  wayland.windowManager.mango = {
+                    enable = true;
+                    settings = ''
+                      # see ~/.config/mango/config.conf
+                    '';
+                    autostart_sh = ''
+                      # see ~/.config/mango/autostart.sh
+                      # Note: no shebang needed
+                    '';
+                  };
+                })
+              ];
+            };
           };
         }
       ];
