@@ -155,6 +155,20 @@
     slurp
     wl-clipboard
     brightnessctl
+
+    # Mango companion stack (referenced by ~/.config/mango/autostart.sh)
+    waybar
+    swaybg
+    swaynotificationcenter
+    wlsunset
+    networkmanagerapplet
+    blueman
+    swayosd
+    sway-audio-idle-inhibit
+    wl-clip-persist
+    cliphist
+    fcitx5
+    xdg-desktop-portal-wlr
   ];
 
   # ── Fonts ─────────────────────────────────────────────────────────────────
