@@ -370,10 +370,14 @@ in {
     enable = true;
     initExtra = ''
       nr() {
-        sudo nixos-rebuild switch --flake /home/steve#default && \
-        git -C /home/steve add -A && \
-        git -C /home/steve commit -m "auto: nixos rebuild $(date '+%Y-%m-%d %H:%M')" && \
-        git -C /home/steve push
+        local repo=/home/steve
+        git -C "$repo" add -A
+        git -C "$repo" diff --cached --quiet || \
+          git -C "$repo" commit -m "auto: nixos rebuild $(date '+%Y-%m-%d %H:%M')" || return 1
+        sudo nixos-rebuild switch --flake "$repo#default" || return 1
+        sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +4
+        sudo nix-collect-garbage
+        git -C "$repo" push
       }
     '';
   };
