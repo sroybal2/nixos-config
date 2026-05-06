@@ -39,14 +39,8 @@
                 ./home.nix
                 mango.hmModules.mango
                 ({ ... }: {
-                  wayland.windowManager.mango = {
-                    enable = true;
-                    settings = builtins.readFile ./mango-config.conf;
-                    autostart_sh = ''
-                      # see ~/.config/mango/autostart.sh
-                      # Note: no shebang needed
-                    '';
-                  };
+                  wayland.windowManager.mango.enable = true;
+                  # Config managed externally via ~/.config/mango (cloned from DreamMaoMao/mango-config)
                 })
               ];
             };
