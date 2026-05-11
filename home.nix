@@ -387,6 +387,10 @@ in {
     obsidian
     mc
     nixd
+    waypaper
+    swww
+    
+    
   ];
 
   programs.helix = {
