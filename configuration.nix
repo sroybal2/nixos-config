@@ -27,7 +27,7 @@
   networking.networkmanager.enable = true;
 
   # ── Locale / Time ────────────────────────────────────────────────────────
-  time.timeZone = "America/Los_Angelos";
+  time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
 
   # ── Display / Desktop ─────────────────────────────────────────────────────
